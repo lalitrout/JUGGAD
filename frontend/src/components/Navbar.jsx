@@ -89,7 +89,7 @@ export default function Navbar() {
                 variant="subtitle1"
                 sx={{ fontWeight: 300, color: "#1976d2" }}
               >
-                Hi, {user?.name || "User"}
+                Hi, {user?.displayName || "User"}
               </Typography>
               <IconButton
                 size="large"

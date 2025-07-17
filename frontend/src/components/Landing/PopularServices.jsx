@@ -7,7 +7,7 @@ export default function PopularServices({ label, src }) {
       sx={{
         minWidth: 240,
         maxWidth: 240,
-        bgcolor: "white",
+        bgcolor: "rgba(74, 144, 226, 0.85)",
         border: "1px solid #90caf9",
         borderRadius: 2,
         overflow: "hidden",

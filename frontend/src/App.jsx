@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing/Landing.jsx";
 import AuthPage from "./Authentication/AuthPage.jsx";
 import UnderConstruction from "./components/UnderConstruction.jsx";
-import LogoutButton from "./Authentication/LogoutButton.jsx";
 
 function App() {
   return (
@@ -27,7 +26,6 @@ function App() {
             <Route path="*" element={<UnderConstruction />} />
           </Routes>
         </Box>
-        <LogoutButton />
         <Footer />
       </Box>
     </Router>

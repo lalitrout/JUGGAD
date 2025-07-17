@@ -1,33 +1,26 @@
-import React from 'react';
-import { Button } from '@mui/material';
-import useAuth from '../context/UseAuth.jsx'; 
+// utils/logoutUser.js
+import useAuth from '../context/UseAuth';
 
-const LogoutButton = () => {
+export const useLogoutUser = () => {
   const { setIsAuthenticated } = useAuth();
 
-  const handleLogout = async () => {
+  const logoutUser = async () => {
     try {
       const res = await fetch('http://localhost:5000/logout', {
         method: 'POST',
-        credentials: 'include', // include cookies in the request
+        credentials: 'include',
       });
 
       if (res.ok) {
         setIsAuthenticated(false);
-        console.log(" Logged out successfully");
+        console.log("Logged out successfully");
       } else {
-        console.error(" Failed to logout");
+        console.error("Failed to logout");
       }
     } catch (error) {
       console.error("Logout error:", error);
     }
   };
 
-  return (
-    <Button onClick={handleLogout} color="secondary" variant="contained">
-      Logout
-    </Button>
-  );
+  return logoutUser;
 };
-
-export default LogoutButton;
