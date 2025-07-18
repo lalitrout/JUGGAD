@@ -1,0 +1,8 @@
+node_modules/
+/serviceAuth.json
+.env
+*.log
+
+dist/
+build/
+

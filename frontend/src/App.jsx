@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./components/Navbar.jsx";
 import { Box } from "@mui/material";
 import Footer from "./components/Footer.jsx";
@@ -6,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing/Landing.jsx";
 import AuthPage from "./Authentication/AuthPage.jsx";
 import UnderConstruction from "./components/UnderConstruction.jsx";
+import PostTaskPage from "./components/JoinAsProvider/JoinProviderSection.jsx";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/join-provider" element={<PostTaskPage />} />
             <Route path="*" element={<UnderConstruction />} />
           </Routes>
         </Box>
