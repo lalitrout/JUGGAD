@@ -1,104 +1,154 @@
 import React from "react";
-import { Box, Typography, Grid, Button } from "@mui/material";
-import useAuth from "../../context/UseAuth.jsx";
+import { Box, Typography, Grid, Avatar, Button } from "@mui/material";
+import useAuth from "../../context/UseAuth";
 
-
-const features = [
+const steps = [
   {
-    title: "Find the Right Talent for Any Task",
-    img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/categories.8badf97.svg",
-    alt: "Access a pool of top talent across 700 categories",
+    number: "1",
+    text: "Choose a Tasker by price, skills, and reviews.",
+    bgColor: "#dcd6f7",
   },
   {
-    title: "Simple Matching Process",
-    img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/matching.0eef7cc.svg",
-    alt: "Easy-to-use matching experience",
+    number: "2",
+    text: "Schedule a Tasker as early as today.",
+    bgColor: "#fff9c4",
   },
   {
-    title: "Fast & Budget-Friendly",
-    img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/quickly.6879514.svg",
-    alt: "Get quality work done quickly and within budget",
-  },
-  {
-    title: "Pay Only When You're Satisfied",
-    img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/happy.42ed7bd.svg",
-    alt: "Only pay when you’re happy",
+    number: "3",
+    text: "Chat, pay, tip, and review all in one place.",
+    bgColor: "#c8e6c9",
   },
 ];
 
-const TaskHighlights = () => {
-      const { isAuthenticated } = useAuth();
+const HowItWorks = () => {
+  const { isAuthenticated } = useAuth();
 
   return (
     <Box
       sx={{
-        mt: 4,
-        py: 8,
-        px: 4,
-        bgcolor: "#f0f4ff",
-        textAlign: "center",
-        borderRadius: 3,
-        boxShadow: 2,
+        borderRadius: 5,
+        backgroundColor: "#aac2eaff",
+        px: { xs: 2, sm: 4, md: 8 },
+        py: { xs: 6, sm: 8 },
       }}
     >
-      <Typography
-        variant="h4"
+      <Box
         sx={{
-          fontWeight: 700,
-          mb: 6,
-          color: "#0d47a1",
-          textShadow: "-0.5px -0.5px 0 #90caf9",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          position: "relative",
         }}
       >
-        Get Anything Done by Trusted Taskers
-      </Typography>
-
-      <Grid container spacing={4} justifyContent="center">
-        {features.map((feature, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <Box sx={{ px: 2 }}>
-              <img
-                src={feature.img}
-                alt={feature.alt}
-                style={{ width: 64, height: 64, marginBottom: 16 }}
-              />
-              <Typography variant="body1" sx={{ fontWeight: 500, color: "#1a237e" }}>
-                {feature.title}
-              </Typography>
-            </Box>
+        {/* Right: Image */}
+        <Grid container>
+          <Grid item xs={12}>
+            <Box
+              component="img"
+              src="https://images.ctfassets.net/vwt5n1ljn95x/68OY5vAHQdG6blVvXM1WT7/5f45c9eda06d29820a9836a11232ef16/how_it_works_pic_updated.jpg?w=1920&q=75&fm=webp"
+              alt="Image of lady booking a task"
+              sx={{
+                width: "100%",
+                borderRadius: "24px",
+                objectFit: "cover",
+                height: { xs: 250, sm: 300, md: 380 },
+                ml: { md: 5, lg: 35 },
+              }}
+            />
           </Grid>
-        ))}
-      </Grid>
+        </Grid>
 
-     <Button
-  href= {isAuthenticated ? "/explore" : "/auth"}
-
-  variant="contained"
-  size="large"
-  sx={{
-    mt: 6,
-    borderRadius: "999px",
-    px: 5,
-    py: 1.7,
-    fontWeight: 600,
-    fontSize: "1rem",
-    background: "linear-gradient(135deg, #42a5f5, #1e88e5)",
-    color: "#fff",
-    boxShadow: "0 4px 14px rgba(33, 150, 243, 0.4)",
-    textTransform: "none",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      background: "linear-gradient(135deg, #1e88e5, #1565c0)",
-      boxShadow: "0 6px 20px rgba(21, 101, 192, 0.5)",
-      transform: "translateY(-2px)",
-    },
-  }}
->
-  {isAuthenticated ? `Explore` : "Join Now"}
-</Button>
-
+        {/* Left: Overlapping Card */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: 0,
+            transform: "translate(-10%, -50%)",
+            zIndex: 2,
+            width: { xs: "45%", sm: "65%", md: "50%" },
+          }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#fff",
+              borderRadius: "24px",
+              p: { xs: 2, sm: 3, md: 4 },
+              boxShadow: 3,
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                mb: 3,
+                color: "#1138a1ff",
+                fontSize: { xs: "0.9rem", sm: "1.4rem", md: "1.6rem" },
+              }}
+            >
+              How it works
+            </Typography>
+            {steps.map((step, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  mb: 2,
+                }}
+              >
+                <Avatar
+                  sx={{
+                    bgcolor: step.bgColor,
+                    color: "#000",
+                    mr: 2,
+                    fontWeight: "bold",
+                    width: 28,
+                    height: 28,
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  {step.number}
+                </Avatar>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: "#212121",
+                    fontSize: { xs: "0.7rem", sm: "1rem" },
+                  }}
+                >
+                  {step.text}
+                </Typography>
+              </Box>
+            ))}
+            {/* <Button
+              href={!isAuthenticated ? "/auth" : "/member"}
+              variant="contained"
+              size="small"
+              sx={{
+                px: 4,
+                py: 1,
+                borderRadius: "999px",
+                fontWeight: 400,
+                fontSize: "1rem",
+                background: "linear-gradient(135deg, #42a5f5, #1e88e5)",
+                color: "#fff",
+                boxShadow: "0 4px 14px rgba(33, 150, 243, 0.4)",
+                textTransform: "none",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  background: "linear-gradient(135deg, #1e88e5, #1565c0)",
+                  boxShadow: "0 6px 20px rgba(21, 101, 192, 0.5)",
+                  transform: "translateY(-2px)",
+                },
+              }}
+            >
+              Join Us
+            </Button> */}
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };
 
-export default TaskHighlights;
+export default HowItWorks;

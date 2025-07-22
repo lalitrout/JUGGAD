@@ -3,6 +3,7 @@ import VideoHero from './VideoHero';
 import SkillCommunityCard from './SkillCommunityCard';
 import HowItWorks from './HowItWorks';
 import FAQSection from './FAQSection';
+import GettingStarted from './GettingStarted';
 
 const PostTaskPage = () => {
   // future logic here
@@ -10,8 +11,9 @@ const PostTaskPage = () => {
   return (
     <>
       <VideoHero />
+      <GettingStarted/>
       <SkillCommunityCard />
-      <HowItWorks/>
+
       <FAQSection/>
     </>
   );

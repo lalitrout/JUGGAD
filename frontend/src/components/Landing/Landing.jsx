@@ -4,16 +4,20 @@ import CategoriesBlock from "./CategoriesBlock.jsx";
 import Services from "./Services.jsx";
 import Banner from "./Banner.jsx";
 import TaskHighlights from "./TaskHighlights.jsx";
-
+import SatisfactionGuarantee from "./SatisfactionGurantee.jsx";
 
 function Landing() {
   return (
     <>
-        <SearchBar />
+      <SearchBar />
+      <div style={{ marginTop: "-80px", zIndex: 10, position: "relative" }}>
         <CategoriesBlock />
-        <Services />
-        <Banner />
-        <TaskHighlights />
+      </div>
+
+      <Services />
+      <TaskHighlights />
+      <SatisfactionGuarantee />
+      <Banner />
     </>
   );
 }

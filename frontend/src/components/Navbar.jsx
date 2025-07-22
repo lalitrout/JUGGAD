@@ -76,10 +76,10 @@ export default function Navbar() {
                   "linear-gradient(to right, #0d47a1, #90caf9, #1976d2, #42a5f5, #2196f3, #1e88e5, #1e88e5, #1976d2, #1565c0, #0d47a1)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
-                fontWeight: 380,
+                fontWeight: 450,
               }}
             >
-              JUGGAD
+              JUGAAD
             </span>
           </Typography>
 
@@ -142,7 +142,7 @@ export default function Navbar() {
                 },
               }}
             >
-              Join Now
+              Login
             </Button>
           )}
         </Toolbar>

@@ -1,52 +1,75 @@
 import React from "react";
 import "./SearchBar.css";
+import Button from "@mui/material/Button";
 import Search from "./Search.jsx";
+import useAuth from "../../context/UseAuth.jsx";
 
 const SearchBar = () => {
-  return (
-    <div>
-      <div
-        className="Dk9TVqv"
-        data-impression-item="f54836f2-39a0-406e-9d1d-5a171495f516"
-        impressed-item="true"
-      >
-        <div className="_1rfvtgw16n _1rfvtgw0 _1rfvtgw11i _1rfvtgw195 _1rfvtgw1b8">
-          <h1
-            className="_1v0vd7jk _1rfvtgw1hr _1rfvtgw2 _1x8midc0"
-            style={{ "--_1v0vd7j0": "var(--mqvym5d)", fontWeight: 280 }}
-          >
-            Our{" "}
-            <span
-              style={{
-                background:
-                  "linear-gradient(to right, #0d47a1,  #90caf9, #1976d2, #42a5f5, #2196f3, #1e88e5, #1e88e5, #1976d2, #1565c0, #0d47a1)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                fontWeight: 280,
-              }}
-            >
-              juggad
-            </span>{" "}
-            helpers <br />
-            will take it from here
-          </h1>
+  const { isAuthenticated } = useAuth();
 
-          <div
-            className="_19aaquz1j _19aaquz1l _19aaquz1m _19aaquz1n _1rfvtgw0"
-            style={{
-              "--_19aaquz0": "100%",
-              "--_19aaquz2": "436px",
-              "--_19aaquz3": "560px",
-              "--_19aaquz4": "616px",
-            }}
-          >
-            <div className="_1rfvtgw0 search-bar-package search_bar-package">
-              <form className="search-form button-inside">
-                <Search />
-              </form>
-            </div>
-          </div>
-        </div>
+  return (
+    <div className="Dk9TVqv">
+      {/* App Name and Description */}
+      <h1 className="app-title">
+        <span className="gradient-text">Jugaad</span> – Get everyday tasks done
+        by people near you
+      </h1>
+
+      {/* Search bar */}
+      <div className="search-wrapper">
+        <form className="search-form button-inside">
+          <Search placeholder="What do you need help with?" />
+        </form>
+      </div>
+
+      {/* CTA Buttons */}
+      <div className="cta-buttons">
+        <Button
+          href={isAuthenticated ? "/post-task" : "/auth"}
+          variant="contained"
+          size="large"
+          sx={{
+            mt: 1,
+            borderRadius: "999px",
+            fontWeight: 600,
+            fontSize: "0.8rem",
+            background: "linear-gradient(135deg, #42a5f5, #1e88e5)",
+            color: "#fff",
+            boxShadow: "0 4px 14px rgba(33, 150, 243, 0.4)",
+            textTransform: "none",
+            transition: "all 0.3s ease",
+            "&:hover": {
+              background: "linear-gradient(135deg, #1e88e5, #1565c0)",
+              boxShadow: "0 6px 20px rgba(21, 101, 192, 0.5)",
+              transform: "translateY(-2px)",
+            },
+          }}
+        >
+          Post a Task
+        </Button>
+        <Button
+          href={isAuthenticated ? "/join-provider" : "/auth"}
+          variant="contained"
+          size="large"
+          sx={{
+            mt: 1,
+            borderRadius: "999px",
+            fontWeight: 600,
+            fontSize: "0.8rem",
+            background: "linear-gradient(135deg, #42a5f5, #1e88e5)",
+            color: "#fff",
+            boxShadow: "0 4px 14px rgba(33, 150, 243, 0.4)",
+            textTransform: "none",
+            transition: "all 0.3s ease",
+            "&:hover": {
+              background: "linear-gradient(135deg, #1e88e5, #1565c0)",
+              boxShadow: "0 6px 20px rgba(21, 101, 192, 0.5)",
+              transform: "translateY(-2px)",
+            },
+          }}
+        >
+          Join Us as Helper.
+        </Button>
       </div>
     </div>
   );

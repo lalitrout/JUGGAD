@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Grid, Box, Typography } from "@mui/material";
 import CleaningServicesIcon from "@mui/icons-material/CleaningServices";
 import DeckIcon from "@mui/icons-material/Deck";
@@ -10,14 +11,16 @@ import FastfoodIcon from "@mui/icons-material/Fastfood";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import ShowerIcon from "@mui/icons-material/Shower";
 
-function Categories({ Icon, label }) {
+function Categories({ Icon, label, link }) {
   return (
+   <Link to={link} style={{ textDecoration: "none" }}>
     <Box
       sx={{
         p: 2,
         textAlign: "center",
         borderRadius: 2,
         boxShadow: 2,
+        backgroundColor: "white",
         transition: "transform 0.2s ease-in-out",
         cursor: "pointer",
         "&:hover": {
@@ -31,34 +34,31 @@ function Categories({ Icon, label }) {
         {label}
       </Typography>
     </Box>
+    </Link>
   );
 }
 
 export default function CategoriesBlock() {
-  const chores = [
-    { Icon: CleaningServicesIcon, label: "Mopping" },
-    { Icon: DeckIcon, label: "Dusting" },
-    { Icon: IronIcon, label: "Ironing" },
-    { Icon: HouseIcon, label: "Organizing" },
-    { Icon: LocalLaundryServiceIcon, label: "Laundry" },
-    { Icon: PetsIcon, label: "Walk" },
-    { Icon: FastfoodIcon, label: "Feeding" },
-    { Icon: LocalHospitalIcon, label: "Vet Visit" },
-    { Icon: ShowerIcon, label: "Bathing" },
+   const chores = [
+    { Icon: CleaningServicesIcon, label: "Mopping", link: "/tasks/mopping" },
+    { Icon: DeckIcon, label: "Dusting", link: "/tasks/dusting" },
+    { Icon: IronIcon, label: "Ironing", link: "/tasks/ironing" },
+    { Icon: HouseIcon, label: "Organizing", link: "/tasks/organizing" },
+    { Icon: LocalLaundryServiceIcon, label: "Laundry", link: "/tasks/laundry" },
+    { Icon: PetsIcon, label: "Walk", link: "/tasks/walk" },
+    { Icon: FastfoodIcon, label: "Feeding", link: "/tasks/feeding" },
+    { Icon: LocalHospitalIcon, label: "Vet Visit", link: "/tasks/vet-visit" },
+    { Icon: ShowerIcon, label: "Bathing", link: "/tasks/bathing" },
   ];
 
   return (
-    <Box sx={{ px: 2, py: 4 }}>
-      <Typography variant="h4" textAlign="center" mb={4}>
-        Chore Categories
-      </Typography>
+   
       <Grid container spacing={2} justifyContent="center">
         {chores.map((chore, index) => (
           <Grid item xs={4} sm={3} md={2} key={index}>
-            <Categories Icon={chore.Icon} label={chore.label} />
+            <Categories Icon={chore.Icon} label={chore.label} link={chore.link} />
           </Grid>
         ))}
       </Grid>
-    </Box>
   );
 }

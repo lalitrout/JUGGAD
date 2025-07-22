@@ -1,6 +1,7 @@
 // firebase.jsx
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; // <-- add this
 
 // Your Firebase config
 const firebaseConfig = {
@@ -15,35 +16,28 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-auth.useDeviceLanguage(); // Use the device's language for OTP prompts
+auth.useDeviceLanguage();
 
+const db = getFirestore(app); // <-- Firestore init
 const googleProvider = new GoogleAuthProvider();
 
-// Function to set up invisible reCAPTCHA
+// Setup reCAPTCHA for phone auth
 const setUpRecaptcha = (phoneNumber, containerId = "recaptcha-container") => {
   return new Promise((resolve, reject) => {
     const recaptchaVerifier = new RecaptchaVerifier(
       containerId,
       {
         size: "invisible",
-        callback: () => {
-          console.log("reCAPTCHA verified!");
-        },
-        "expired-callback": () => {
-          reject(new Error("reCAPTCHA expired. Please try again."));
-        }
+        callback: () => console.log("reCAPTCHA verified!"),
+        "expired-callback": () => reject(new Error("reCAPTCHA expired. Try again."))
       },
       auth
     );
 
     signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier)
-      .then((confirmationResult) => {
-        resolve(confirmationResult); // You can use this to confirm OTP later
-      })
-      .catch((error) => {
-        reject(error);
-      });
+      .then((confirmationResult) => resolve(confirmationResult))
+      .catch((error) => reject(error));
   });
 };
 
-export { auth, googleProvider, setUpRecaptcha };
+export { auth, db, googleProvider, setUpRecaptcha }; // export db too

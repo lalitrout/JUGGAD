@@ -1,12 +1,23 @@
 import React from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Grid,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../context/UseAuth";
 
 const VideoHero = () => {
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleGetStarted = () => {
-    navigate("/post-task"); // or '/services' or your actual route
+    navigate("/post-task");
   };
 
   return (
@@ -14,8 +25,9 @@ const VideoHero = () => {
       sx={{
         position: "relative",
         width: "100%",
-        height: "100vh",
-        overflow: "hidden",
+        height: { xs: "65vh", md: "70vh" },
+        overflow: "visible", // allow overlap
+        color: "#fff",
       }}
     >
       {/* Background Video */}
@@ -31,7 +43,7 @@ const VideoHero = () => {
           top: 0,
           left: 0,
           width: "100%",
-          height: "60%",
+          height: "100%",
           objectFit: "cover",
           zIndex: 0,
         }}
@@ -46,18 +58,28 @@ const VideoHero = () => {
         />
         <source
           src="https://sg.fiverrcdn.com/packages_lp/cover_video.ogv"
-          type="video/ogv"
+          type="video/ogg"
         />
         Your browser does not support the video tag.
       </Box>
+
+      {/* Gradient Overlay */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8))",
+          zIndex: 1,
+        }}
+      />
 
       {/* Overlay Content */}
       <Box
         sx={{
           position: "relative",
-          zIndex: 1,
+          zIndex: 2,
           height: "100%",
-          color: "white",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -66,28 +88,32 @@ const VideoHero = () => {
           px: 2,
         }}
       >
-        <Typography variant="h3" sx={{ fontWeight: 400 }} className="fade-in">
+        <Typography
+          variant={isMobile ? "h4" : "h3"}
+          fontWeight={600}
+          sx={{ mb: 2, maxWidth: 800 }}
+        >
           Lend a Hand, Change a Life
         </Typography>
 
         <Typography
-          variant="h6"
-          sx={{ mt: 2, maxWidth: 600 }}
-          className="fade-in"
+          variant={isMobile ? "body1" : "h6"}
+          sx={{ maxWidth: 600, mb: 4, color: "#e0e0e0" }}
         >
-          Whether it’s babysitting, tech help, or just errands — help your
-          neighbors and build a stronger community.
+          Whether it’s babysitting, tech help, or errands — help your neighbors
+          and build a stronger community.
         </Typography>
 
         <Button
-          href="/auth"
+          href={ !isAuthenticated? "/auth" : "/member"}
           variant="contained"
           size="large"
           sx={{
-            mt: 1,
+            px: 4,
+            py: 1.5,
             borderRadius: "999px",
             fontWeight: 600,
-            fontSize: "0.8rem",
+            fontSize: "1rem",
             background: "linear-gradient(135deg, #42a5f5, #1e88e5)",
             color: "#fff",
             boxShadow: "0 4px 14px rgba(33, 150, 243, 0.4)",
@@ -100,23 +126,36 @@ const VideoHero = () => {
             },
           }}
         >
-            Explore
+          Join Us
         </Button>
+      </Box>
 
-        {/* Stats Section */}
+      {/* ⬇️ Stats Overlapping Section */}
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: "-60px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 3,
+          width: "90%",
+          maxWidth: 800,
+        }}
+      >
         <Grid
           container
           spacing={3}
           justifyContent="center"
           sx={{
-            mt: 6,
-            backgroundColor: "rgba(0,0,0,0.4)",
-            borderRadius: 2,
-            px: 4,
-            py: 2,
-            maxWidth: 700,
+            background:
+              "linear-gradient(135deg, rgba(33,150,243,0.9), rgba(30,136,229,0.9))",
+            borderRadius: 3,
+            px: { xs: 2, sm: 4 },
+            py: { xs: 2.5, sm: 3.5 },
+            boxShadow: "0 8px 30px rgba(21, 101, 192, 0.45)",
+            backdropFilter: "blur(6px)",
+            color: "#ffffff",
           }}
-          className="fade-in"
         >
           <Grid item xs={12} sm={4} textAlign="center">
             <Typography variant="body1">Help Offered Every</Typography>

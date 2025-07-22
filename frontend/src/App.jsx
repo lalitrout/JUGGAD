@@ -6,6 +6,7 @@ import Landing from "./components/Landing/Landing.jsx";
 import AuthPage from "./Authentication/AuthPage.jsx";
 import UnderConstruction from "./components/UnderConstruction.jsx";
 import PostTaskPage from "./components/JoinAsProvider/JoinProviderSection.jsx";
+import MembershipForm from "./Authentication/MembershipForm.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/join-provider" element={<PostTaskPage />} />
+            <Route path="/member" element={<MembershipForm />} />
             <Route path="*" element={<UnderConstruction />} />
           </Routes>
         </Box>

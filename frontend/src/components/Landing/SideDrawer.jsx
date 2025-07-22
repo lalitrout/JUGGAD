@@ -16,12 +16,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useMember } from "../../context/MemberContext";
+
 
 import useAuth from '../../context/UseAuth';
 
 export default function SideDrawer() {
   const [open, setOpen] = React.useState(false);
   const { setIsAuthenticated, isAuthenticated } = useAuth();
+  const { isMember } = useMember();
+
   const navigate = useNavigate();
 
   const toggleDrawer = (newOpen) => () => {
@@ -63,7 +67,6 @@ export default function SideDrawer() {
 
   const options = [
     { text: 'Post a Task', icon: <TaskIcon />, path: '/post-task' },
-    { text: 'Join as Service Provider', icon: <GroupAddIcon />, path: '/join-provider' },
     { text: 'Browse Tasks', icon: <SearchIcon />, path: '/browse-tasks' },
     { text: 'My Tasks', icon: <AssignmentIcon />, path: '/my-tasks' },
     { text: 'Help / Support', icon: <HelpOutlineIcon />, path: '/help' },
@@ -71,6 +74,9 @@ export default function SideDrawer() {
   ];
   if (isAuthenticated) {
   options.push({ text: 'Logout', icon: <LogoutIcon />, isLogout: true });
+}
+if (!isMember) {
+  options.push({ text: 'Join as a Memeber', icon: <GroupAddIcon />, path: '/join-provider' });
 }
 
   const DrawerList = (

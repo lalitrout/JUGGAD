@@ -28,7 +28,7 @@ export default function JuggadFooter() {
         spacing={2}
       >
         <Typography variant="body2" color="text.secondary" align="center">
-          © Juggad Solutions 2025
+          © Jugaad Solutions 2025
         </Typography>
 
         <Stack direction="row" spacing={1}>

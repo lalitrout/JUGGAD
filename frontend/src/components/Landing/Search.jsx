@@ -15,7 +15,7 @@ export default function SearchBar() {
     >
       <TextField
         variant="outlined"
-        placeholder='Try "Cleaning", "Laundry", "Pet Care"'
+        placeholder='Wanna help? search Tasks...'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         sx={{
